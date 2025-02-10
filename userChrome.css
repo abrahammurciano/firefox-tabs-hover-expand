@@ -1,0 +1,52 @@
+:root {
+  --uc-navbar-height: 40px;
+  --uc-bookbar-height: 22px;
+  --uc-vertical-collapsed-width: 55px;
+  /* Cambiado a 180px para un ancho mayor en estado expandido */
+  --uc-vertical-expanded-width: 180px;
+  --chrome-content-separator-color: transparent;
+  --uc-tab-margins-left: 3.5px 0 5px 0px;
+  --uc-tab-margins-right: 3.5px 0px 5px 0px;
+}
+
+/* Estado colapsado por defecto */
+#sidebar-main {
+  transition: width 250ms ease !important;
+  width: var(--uc-vertical-collapsed-width) !important;
+}
+
+/* Estado expandido al hacer hover o cuando se fuerza con el atributo expanded */
+#sidebar-main:hover,
+#sidebar-main[expanded] {
+  width: var(--uc-vertical-expanded-width) !important;
+}
+
+/* Ajuste de los anchos de las pestañas */
+#sidebar-main:not(:hover):not([expanded]) .tabbrowser-tab {
+  width: 70px !important;
+  min-width: 0 !important;
+}
+#sidebar-main:hover .tabbrowser-tab,
+#sidebar-main[expanded] .tabbrowser-tab {
+  /* Se ajusta el ancho de cada pestaña en función del ancho expandido */
+  width: calc(var(--uc-vertical-expanded-width) - 10px) !important;
+  min-width: 0 !important;
+}
+#sidebar-main:not(:hover):not([expanded]) .tabbrowser-tab[pinned] {
+  width: 43px !important;
+  min-width: 0 !important;
+}
+
+/* Ocultar elementos internos en estado colapsado */
+#sidebar-main:not(:hover):not([expanded]) .tab-label-container,
+#sidebar-main:not(:hover):not([expanded]) .tab-close-button {
+  display: none !important;
+}
+
+/* Mostrar títulos y botones cuando está expandido */
+#sidebar-main:hover .tab-label-container,
+#sidebar-main[expanded] .tab-label-container,
+#sidebar-main:hover .tab-close-button,
+#sidebar-main[expanded] .tab-close-button {
+  display: inline !important;
+}
