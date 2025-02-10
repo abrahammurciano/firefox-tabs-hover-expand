@@ -2,7 +2,8 @@
 
 This code enables vertical tabs in Firefox to automatically expand when hovering over them, displaying full tab titles with a smooth animation.  
 
->*To make this modification work, a small configuration change in the browser is required, as described below:*
+
+>*To make this modification work, a small configuration in the browser is required, as described below:*
 
 ## 🛠️ Enable Legacy Toolkit and Set Up the `chrome` Folder  
 
