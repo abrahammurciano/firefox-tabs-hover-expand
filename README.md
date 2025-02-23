@@ -1,38 +1,43 @@
-# Firefox Vertical Tabs Auto-Expand  
+# Firefox: Expand Vertical Tabs on Hover
 
-This code enables vertical tabs in Firefox to automatically expand when hovering over them, displaying full tab titles with a smooth animation.  
+This code enables vertical tabs in Firefox to automatically expand when hovering over them, displaying full tab titles with a smooth animation. This is a fork of [ENDE25/FIREFOX-tabs-hover-expand](https://github.com/ENDE25/FIREFOX-tabs-hover-expand).
 
-This is a fork of https://github.com/ENDE25/FIREFOX-tabs-hover-expand, with the following added features:
+## Features
+
+- Narrow tabs sidebar with icons only by default
+- Full tabs with title and close button on hover
+- Smooth animation when expanding tabs
 - Support for pinned tabs
-- Faster animation times
-- Slightly wider expanded width
+- Faster animation times than the original version
+- Slightly wider expanded width than the original version
 
-<img src="/demonstration.gif" alt="Demostración" width="450" />
+<img src="/demo.webm" alt="Demo" width="450" />
 
+
+## 🛠️ Installation
 
 >*To make this modification work, a small configuration in the browser is required, as described below:*
 
-## 🛠️ Enable Legacy Toolkit and Set Up the `chrome` Folder  
+To apply this style in Firefox, follow these steps:
 
-To apply this style in Firefox, follow these steps:  
+### 1️⃣ Enable `userChrome.css` Support
+1. Open Firefox and type in the address bar: `about:config`
+1. Accept the warning message if it appears.
+1. Search for the preference: `toolkit.legacyUserProfileCustomizations.stylesheets`
+1. Double-click it to set its value to `true`.
 
-### 1️⃣ Enable `userChrome.css` Support  
-1. Open Firefox and type in the address bar:  
-`about:config`
-2. Accept the warning message if it appears.  
-3. Search for the preference:  
-`toolkit.legacyUserProfileCustomizations.stylesheets`
-4. Double-click it to set its value to `true`.  
+### 2️⃣ Find the User Profile Folder
+1. Type in the address bar: `about:support`
+1. Look for the **Profile Folder** section and click **Open Folder**.
+1. Inside the profile folder, locate (or create if it doesn't exist) a folder named `chrome`, and inside it, another folder named `css`.
 
-### 2️⃣ Find the User Profile Folder  
-1. Type in the address bar:  
-`about:support`
-2. Look for the **"Profile Folder"** section and click **"Open Folder"**.  
-3. Inside the profile folder, locate (or create if it doesn't exist) a folder named `chrome`.  
+### 3️⃣ Apply the Style
+1. Copy `css/expand-vertical-tabs-on-hover.css` from this repository into the `css` folder.
+1. Copy the `userChrome.css` file into the `chrome` folder. If it already exists, append the content of this file to the existing one.
+1. Restart Firefox for the changes to take effect.
 
-### 3️⃣ Apply the Style  
-1. Copy the `userChrome.css` file into the `chrome` folder.  
-2. Restart Firefox for the changes to take effect.  
+That's it! Now your vertical tabs will automatically expand when hovered over. 🚀
 
-That's it! Now your vertical tabs will automatically expand when hovered over. 🚀  
+## Known Issues
 
+- The button to expand/collapse the sidebar will no longer work. This is because if this customization would respect it, tabs would remain expanded when the mouse leaves the sidebar, which is not the desired behavior. This would happen because FireFox automatically adds the `expanded` attribute when the button is clicked **and** when the mouse is over the sidebar. This prevents the CSS from distinguishing between the two cases, so instead it simply ignores the `expanded` attribute and only reacts to `:hover`.

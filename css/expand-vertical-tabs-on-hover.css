@@ -1,0 +1,117 @@
+:root {
+	--uc-tabs-collapsed-width: 50px;
+	--uc-tabs-expanded-width: 250px;
+	--uc-tabs-tab-padding: 10px;
+	--uc-tabs-tab-margin: calc((var(--uc-tabs-collapsed-width) - var(--uc-tabs-tab-padding) * 2 - var(--icon-size-default)) / 2);
+	--uc-tabs-animation-duration: 50ms;
+	--chrome-content-separator-color: transparent !important;
+}
+
+/* Either state (collapsed or expanded) */
+#sidebar-main {
+	transition: width var(--uc-tabs-animation-duration) ease !important;
+
+	& #tabbrowser-tabs,
+	& .tabbrowser-tab {
+		width: 100% !important;
+	}
+
+	& #vertical-pinned-tabs-container,
+	& #tabbrowser-arrowscrollbox,
+	& .tools-and-extensions {
+		padding: 0 var(--uc-tabs-tab-margin) !important;
+
+		& .tab-background,
+		& #tabs-newtab-button {
+			margin-inline: 0 !important;
+			width: 100% !important;
+		}
+
+		& .tab-content {
+			padding: 0 var(--uc-tabs-tab-padding) !important;
+		}
+
+		& #tabs-newtab-button {
+			padding: 0 var(--uc-tabs-tab-padding) !important;
+		}
+	}
+
+	/* Always show pinned tabs vertically */
+	& #vertical-pinned-tabs-container {
+		--tab-inline-padding: calc((var(--tab-collapsed-width) - var(--icon-size-default)) / 2) !important;
+
+		&:not(:empty) {
+			display: flex !important;
+			flex-direction: column !important;
+		}
+
+		/* Remove background for pinned tabs */
+		& .tab-background {
+			.tabbrowser-tab:not(:hover)>.tab-stack>&:not([selected], [multiselected]) {
+				background-color: transparent !important;
+			}
+		}
+
+		/* Show the separator between pinned and normal tabs, even when not expanded */
+		&:not(:empty)+#vertical-pinned-tabs-container-separator {
+			display: block !important;
+		}
+	}
+
+	/* Keep attention dot under icon, even when expanded */
+	& .tab-content[titlechanged]:not([selected]) {
+		background-position-x: calc(var(--uc-tabs-tab-padding) + var(--icon-size-default) / 2 - 2px) !important;
+	}
+
+	/* Animate internal tab elements appearing and disappearing */
+	& .tab-label-container,
+	& .tab-close-button {
+		transition: opacity var(--uc-tabs-animation-duration) ease, width var(--uc-tabs-animation-duration) ease !important;
+	}
+}
+
+/* Collapsed state */
+#sidebar-main:not(:hover) {
+	width: var(--uc-tabs-collapsed-width) !important;
+
+	/* Hide internal elements in collapsed state */
+	& .tab-label-container,
+	& .tab-close-button {
+		display: block !important;
+		width: 0 !important;
+		opacity: 0 !important;
+	}
+
+	&+#vertical-pinned-tabs-container-separator {
+		width: calc(var(--uc-tabs-collapsed-width) - var(--tab-inline-padding)) !important;
+	}
+}
+
+/* Expanded state */
+#sidebar-main:hover {
+	/* Expanded state on hover or when forced with the expanded attribute */
+	width: var(--uc-tabs-expanded-width) !important;
+
+	/* Show over tab contents */
+	z-index: calc(var(--browser-area-z-index-tabbox) + 1) !important;
+	background-color: var(--toolbox-bgcolor-inactive) !important;
+
+	/* Show titles and buttons when expanded */
+	& .tab-label-container,
+	& .tab-close-button {
+		display: inline !important;
+	}
+
+	& #vertical-pinned-tabs-container .tab-icon-image {
+		margin-inline-end: var(--tab-icon-end-margin) !important;
+	}
+}
+
+/* Don't shrink website when sidebar is expanded */
+#tabbrowser-tabbox {
+	position: absolute !important;
+	left: var(--uc-tabs-collapsed-width) !important;
+	right: 0 !important;
+	top: 0 !important;
+	bottom: 0 !important;
+}
