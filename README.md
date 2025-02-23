@@ -8,6 +8,7 @@ This code enables vertical tabs in Firefox to automatically expand when hovering
 - Full tabs with title and close button on hover
 - Smooth animation when expanding tabs
 - Support for pinned tabs
+- Sidebar expands over the content area instead of pushing it
 - Faster animation times than the original version
 - Slightly wider expanded width than the original version
 
