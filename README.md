@@ -11,7 +11,7 @@ This code enables vertical tabs in Firefox to automatically expand when hovering
 - Faster animation times than the original version
 - Slightly wider expanded width than the original version
 
-<img src="/demo.webm" alt="Demo" width="450" />
+![Demo](/demo.webm)
 
 
 ## 🛠️ Installation
