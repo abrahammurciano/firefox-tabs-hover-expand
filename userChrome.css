@@ -50,3 +50,50 @@
 #sidebar-main[expanded] .tab-close-button {
   display: inline !important;
 }
+
+/* Siempre mostrar pestañas fijadas en vertical */
+#sidebar-main #vertical-pinned-tabs-container {
+	--tab-inline-padding: calc((var(--tab-collapsed-width) - var(--icon-size-default)) / 2) !important;
+
+	#tabbrowser-tabs[orient="vertical"]>&:not(:empty) {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	#tabbrowser-tabs[expanded]>& {
+		padding-inline: 0px !important;
+
+		& .tab-background {
+			margin-inline: var(--tab-inner-inline-margin) !important;
+		}
+
+		& .tab-content {
+			padding: 0 var(--tab-inline-padding) !important;
+		}
+
+		& .tab-icon-image {
+			margin-inline-end: var(--tab-icon-end-margin);
+		}
+	}
+
+  /* Ocultar fondo de pestañas fijadas */
+	& .tab-background {
+		.tabbrowser-tab:not(:hover)>.tab-stack>&:not([selected], [multiselected]) {
+			background-color: transparent !important;
+		}
+	}
+
+	/* Siempre mostrar la linea entre pestañas fijadas y otras pestañas */
+	&:not(:empty)+#vertical-pinned-tabs-container-separator {
+		display: block !important;
+	}
+
+	#tabbrowser-tabs:not([expanded])>&+#vertical-pinned-tabs-container-separator {
+		width: calc(var(--uc-vertical-collapsed-width) - var(--tab-inline-padding)) !important;
+	}
+}
+
+/* Mantener punto de atencion verde debajo del icono de la pestaña */
+.tab-content[titlechanged]:not([selected]) {
+	background-position-x: calc(var(--uc-vertical-collapsed-width) / 2) !important;
+}
