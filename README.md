@@ -2,6 +2,11 @@
 
 This code enables vertical tabs in Firefox to automatically expand when hovering over them, displaying full tab titles with a smooth animation.  
 
+This is a fork of https://github.com/ENDE25/FIREFOX-tabs-hover-expand, with the following added features:
+- Support for pinned tabs
+- Faster animation times
+- Slightly wider expanded width
+
 <img src="/demonstration.gif" alt="Demostración" width="450" />
 
 
