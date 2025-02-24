@@ -91,7 +91,7 @@
 	width: var(--tweaks-evtoh-expanded-width) !important;
 
 	/* Don't shrink website when sidebar is expanded */
-	margin-inline-end: calc(var(--tweaks-evtoh-collapsed-width) - var(--tweaks-evtoh-expanded-width)) !important;
+	margin-inline-end: calc(var(--tweaks-evtoh-expanded-width) - var(--tweaks-evtoh-expanded-width)) !important;
 
 	/* Show over tab contents */
 	z-index: calc(var(--browser-area-z-index-tabbox) + 1) !important;
