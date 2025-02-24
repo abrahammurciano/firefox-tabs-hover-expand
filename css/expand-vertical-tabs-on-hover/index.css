@@ -9,7 +9,7 @@
 
 /* Either state (collapsed or expanded) */
 #sidebar-main {
-	transition: width var(--tweaks-evtoh-animation-duration) ease !important;
+	transition: width var(--tweaks-evtoh-animation-duration) ease, margin-inline-end var(--tweaks-evtoh-animation-duration) ease !important;
 
 	& #tabbrowser-tabs,
 	& .tabbrowser-tab {
@@ -90,6 +90,9 @@
 	/* Expanded state on hover or when forced with the expanded attribute */
 	width: var(--tweaks-evtoh-expanded-width) !important;
 
+	/* Don't shrink website when sidebar is expanded */
+	margin-inline-end: calc(var(--tweaks-evtoh-collapsed-width) - var(--tweaks-evtoh-expanded-width)) !important;
+
 	/* Show over tab contents */
 	z-index: calc(var(--browser-area-z-index-tabbox) + 1) !important;
 	background-color: var(--toolbox-bgcolor-inactive) !important;
@@ -108,13 +111,4 @@
 	.tab-label-container[textoverflow] {
 		mask-image: linear-gradient(to left, transparent, black var(--tab-label-mask-size)) !important;
 	}
-}
-
-/* Don't shrink website when sidebar is expanded */
-#tabbrowser-tabbox {
-	position: absolute !important;
-	left: var(--tweaks-evtoh-collapsed-width) !important;
-	right: 0 !important;
-	top: 0 !important;
-	bottom: 0 !important;
 }
