@@ -17,8 +17,7 @@
 	}
 
 	& #vertical-pinned-tabs-container,
-	& #tabbrowser-arrowscrollbox,
-	& .tools-and-extensions {
+	& #tabbrowser-arrowscrollbox {
 		padding: 0 var(--uc-tabs-tab-margin) !important;
 
 		& .tab-background,
@@ -65,7 +64,8 @@
 
 	/* Animate internal tab elements appearing and disappearing */
 	& .tab-label-container,
-	& .tab-close-button {
+	& .tab-close-button,
+	& .toolbarbutton-text {
 		transition: opacity var(--uc-tabs-animation-duration) ease, width var(--uc-tabs-animation-duration) ease !important;
 	}
 }
@@ -76,14 +76,12 @@
 
 	/* Hide internal elements in collapsed state */
 	& .tab-label-container,
-	& .tab-close-button {
+	& .tab-close-button,
+	& .toolbarbutton-text {
 		display: block !important;
 		width: 0 !important;
 		opacity: 0 !important;
-	}
-
-	&+#vertical-pinned-tabs-container-separator {
-		width: calc(var(--uc-tabs-collapsed-width) - var(--tab-inline-padding)) !important;
+		padding: 0 !important;
 	}
 }
 
@@ -98,12 +96,17 @@
 
 	/* Show titles and buttons when expanded */
 	& .tab-label-container,
-	& .tab-close-button {
+	& .tab-close-button,
+	& .toolbarbutton-text {
 		display: inline !important;
 	}
 
 	& #vertical-pinned-tabs-container .tab-icon-image {
 		margin-inline-end: var(--tab-icon-end-margin) !important;
+	}
+
+	.tab-label-container[textoverflow] {
+		mask-image: linear-gradient(to left, transparent, black var(--tab-label-mask-size)) !important;
 	}
 }
 
